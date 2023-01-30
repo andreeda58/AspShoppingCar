@@ -1,0 +1,40 @@
+﻿@model SignInModel
+@if (Context.Items.ContainsKey("User"))
+{
+    <div class="p-3">
+        <div class="h3 text-center">
+            <div>
+                <span class="border-bottom border-4">Welcome @Context.Items["User"]</span>
+            </div>
+            <div>
+                <span class="border-bottom border-4">Have a great </span><span class="border-bottom border-4" id="TimeRespond"></span>
+            </div>
+        </div>
+        <div class="text-center">
+            <a asp-controller="User" asp-action="SignOut">Sign out</a>
+        </div>
+    </div>
+}
+else
+{
+    <form id="partialform" class="form-signin text-center" data-ajax-method="POST" asp-action="SignIn" asp-controller="User" data-ajax="true" data-ajax-update="#partialform" data-ajax-mode="replace">
+        <h2 class="mb-3 fw-normal">Sign in</h2>
+        <div>
+            <div id="LogIn_Username_messenger"></div>
+            <input asp-for="Username" id="SignIn_Username" class="form-control" placeholder="Username" required="">
+            <span asp-validation-for="Username" class="h6 d-block rounded bg-danger"></span>
+
+        </div>
+        <div>
+            <div id="LogIn_Password_messenger"></div>
+            <input type="password" asp-for="Password" id="SignIn_Password" class="form-control" placeholder="Password" required="">
+            <span asp-validation-for="Password" class="h6 d-block rounded bg-danger"></span>
+        </div>
+        @if (ViewBag.LogInError != null)
+        {
+            <div class="text-danger">@ViewBag.LogInError</div>
+        }
+        <button id="logIn_Button" disabled class="h3 w-25 btn btn-primary btn-sm">Sign in</button>
+        <a asp-action="SignUp" asp-controller="User" class="h3 w-25 btn btn-primary btn-sm">Sign Up</a>
+    </form>
+}

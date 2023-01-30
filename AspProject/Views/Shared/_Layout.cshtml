@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AspProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/Magnifier.css" rel="stylesheet" />
+    @RenderSection("StyleSheets", required: false)
+</head>
+<body>
+    <header class="border-bottom">
+        <div class="container">
+            
+            <div class="row">
+                <span class="col-1 text-sm-center h6"> Buy For you</span>
+                <div class="col-3 ">
+                    <a asp-controller="Master" asp-action="Index">
+                        <img src="~/Images/dibujo_tienda.png" class="img-responsive rounded float-left @*h-auto*@ w-25" />
+                    </a>
+                </div>
+
+                <div role="main" class="col-6 text-center">
+                    @RenderSection("Header", required: false)
+                </div>
+
+            </div>
+        </div>
+    </header>
+    
+        <div class="row pb-3">
+            <div class="col-3">
+                <div>
+                    @await Html.PartialAsync("_PartialUserLogIn", new SignInModel())
+                </div>
+                <div class="col border-top border-primary">
+                    @await Html.PartialAsync("_PartialNavigationBar")
+                </div>
+            </div>
+
+            <div role="main" class="col border-right h-auto overflow-auto">
+                @RenderBody()
+            </div>
+        </div>
+        <footer class="border-top  footer text-center ">
+            <div class="container">
+                2021 Buy For U - Andree Del Aguila
+            </div>
+        </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/SignInValidations.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

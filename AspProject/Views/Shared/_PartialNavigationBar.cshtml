@@ -1,0 +1,25 @@
+﻿<ul class="nav navbar-nav text-center">
+    <h3>Site Navigation</h3>
+    <li class="nav-item ">
+        <a asp-controller="Master" asp-action="Index" class="nav-link  btn-outline-success">Home Page<span class="sr-only">(current)</span></a>
+    </li>
+    @if (Context.Items.ContainsKey("User"))
+    {
+        <li class="nav-item">
+            <a class="nav-link  btn-outline-success" asp-controller="User" asp-action="UpdateUser">User Account</a>
+        </li>
+    }
+    <li class="nav-item">
+        <a class="nav-link  btn-outline-success" asp-controller="Master" asp-action="AboutUs">About us</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link  btn-outline-success" asp-controller="Product" asp-action="Cart">Shopping Cart</a>
+    </li>
+    @if (Context.Items.ContainsKey("User"))
+    {
+        <li class="nav-item">
+            <a class="nav-link  btn-outline-success" asp-controller="Product" asp-action="NewAd">Publish Ad</a>
+        </li>
+    }
+</ul>
+

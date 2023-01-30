@@ -1,0 +1,30 @@
+﻿@using AspProject_Entities.Models
+@model List<Product>
+@section Header{
+    <h1>WelcomePage</h1>
+}
+@section StyleSheets{
+    <link rel="stylesheet" href="~/js/Time.js" />
+}
+
+
+<div class="text-center">
+    <a asp-controller="Product" asp-action="GetProductsSorted" asp-route-Sorting="Title" class="btn btn-success">Sort by title</a>
+    <a asp-controller="Product" asp-action="GetProductsSorted" asp-route-Sorting="Date" class="btn btn-primary">Sort by Date</a>
+</div>
+<ul id="AdvertsList" class="m-0 p-0 align-content-center">
+    @foreach (Product product in Model)
+    {
+        <li class="d-inline-block list-group-item p-0 border-0">
+            
+            <div class="partialViewWrapper d-inline-block text-center rounded border border-warning">
+                <div class="align-top h-85 overflow-hidden">
+                    @await Html.PartialAsync("PartialProduct", product)
+                </div>
+                <a asp-controller="Product" asp-action="addToCart" asp-route-id="@product.Id" class=" h6 small align-bottom"> AddToCart </a>
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id" class=" h6 small align-bottom"> MoreDetails</a>
+            </div>
+          
+        </li>
+    }
+</ul>

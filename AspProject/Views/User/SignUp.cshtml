@@ -1,0 +1,69 @@
+﻿@using AspProject_Entities.Models
+@model User
+@section Header{
+    <h1>Sign Up Page</h1>
+}
+@section Scripts{
+    <script src="~/js/ClientSideAuthentication.js"></script>
+}
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="w-50 signup-form col-6 text-center">
+        <form asp-controller="User" asp-action="AddUser">
+            <h2>Create Account</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" asp-for="FirstName" class="form-control" placeholder="First name" required="required">
+                </div>
+                <span asp-validation-for="FirstName" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" asp-for="LastName" class="form-control" placeholder="Last name" required="required">
+                </div>
+                <span asp-validation-for="LastName" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="email" asp-for="Email" class="form-control" placeholder="Email Address" required="required">
+                </div>
+                <span asp-validation-for="Email" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="datetime-local" asp-for="BirthDate" class="form-control" placeholder="Birth date" required="required">
+                </div>
+                <span asp-validation-for="BirthDate" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="Username" asp-for="UserName" class="form-control" placeholder="Username" required="required">
+                </div>
+                <span asp-validation-for="UserName" class="d-block rounded bg-danger"></span>
+                <div id="Username_messenger"></div>
+                @if (ViewBag.UserAlreadyExistsError != null)
+                {
+                    <div class="text-danger">@ViewBag.Error</div>
+                }
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" id="Password" asp-for="Password" class="form-control" placeholder="Password" required="required">
+                </div>
+                <span asp-validation-for="Password" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" id="Password_Verification" asp-for="Confirmpassword" class="form-control" placeholder="Confirm Password" required="required">
+                </div>
+                <span asp-validation-for="Confirmpassword" class="d-block rounded bg-danger"></span>
+                <div id="Password_messenger"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="Submit_New_User_Button"  class="btn btn-primary btn-block btn-lg">Sign Up</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>

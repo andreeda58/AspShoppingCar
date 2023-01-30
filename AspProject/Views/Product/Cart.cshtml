@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Product>
+@section Header{
+    <h1>Cart</h1>
+}
+@{
+    double TotalAmount = Model.Sum(p => p.Price);
+}
+@if (TotalAmount != 0)
+{
+    <div class="container row">
+        
+        <div class="col">
+            @foreach (Product product in Model)
+            {
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id">
+                    <div class="partialViewWrapper d-inline-block text-center rounded border border-light">
+                        <div class="align-top h-85 overflow-hidden">
+                            @await Html.PartialAsync("PartialProduct", product)
+                        </div>
+                        <a asp-controller="Product" asp-action="RemoveFromCart" asp-route-id="@product.Id" class="align-bottom">
+                            Remove
+                        </a>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+    <div class="col-5 text-center">
+            <h1>Subtotal</h1>
+            <h6>Total to pay: @Math.Round(TotalAmount, 2)$ </h6>
+            @if (Context.Items.ContainsKey("User"))
+            {
+                <h6>@Math.Round(TotalAmount / 10, 2)$ Membership discount</h6>
+                <h6>Total - @Math.Round(TotalAmount * 0.9, 2)$</h6>
+                <a asp-action="Purchase" asp-controller="Product" class="h4 rounded border border-primary btn-outline-dark">Buy</a>
+            }
+            else
+            {
+                <a asp-action="Purchase" asp-controller="Product" class="h4 rounded border border-secondary ">Buy</a>
+            }
+        </div>
+}
+else
+{
+    <div class="text-center">
+        <h1>Cart is empty!</h1>
+        <a  asp-action="Index" asp-controller="Master" class="btn btn-info">Back to home Page</a>
+    </div>
+}

@@ -1,0 +1,63 @@
+﻿@using AspProject_Entities.Models
+@model Product
+@section Scripts{
+    <script src="~/js/ClientSideAuthentication.js"></script>
+}
+
+@if (Context.Items.ContainsKey("User"))
+{
+<div class="row">
+    <div class="col-3"></div>
+    <div class="w-50 signup-form col-6 text-center">
+        <form asp-controller="Product" asp-action="AddProduct" enctype="multipart/form-data">
+            <h2>Create Advert</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" asp-for="Title" class="form-control" placeholder="Title" required="required">
+                </div>
+                <span asp-validation-for="Title" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" asp-for="ShortDescription" class="form-control" placeholder="Short description" required="required">
+                </div>
+                <span asp-validation-for="ShortDescription" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <textarea name="LongDescription" class="overflow-auto form-control" placeholder="Long description" required="required"></textarea>
+                </div>
+                <span asp-validation-for="LongDescription" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input id="productPrice" type="text" asp-for="Price" class="form-control" placeholder="Product price" required="required">
+                </div>
+                <span asp-validation-for="Price" class="d-block rounded bg-danger"></span>
+                <div id="Username_messenger"></div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="file" name="Images" id="img" accept="image/*" class=" custom-label">
+                </div>
+                <span asp-validation-for="Picture1" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="file" name="Images" id="img" accept="image/*" class=" custom-label">
+                </div>
+                <span asp-validation-for="Picture2" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="file" name="Images" id="img" accept="image/*" class=" custom-label">
+                </div>
+                <span asp-validation-for="Picture3" class="d-block rounded bg-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-info btn-block btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>}

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspProject_DataBase\AspProject_DataBase.csproj" />
+    <ProjectReference Include="..\AspProject_Entities\AspProject_Entities.csproj" />
+  </ItemGroup>
+
+</Project>

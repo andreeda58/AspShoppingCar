@@ -1,0 +1,50 @@
+﻿@using System
+@model Product
+@section Header{<h1>Product details</h1>}
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                @if (Model.Picture1 != null)
+                {
+                    <img src="data:image/png;base64,@Convert.ToBase64String(Model.Picture1)" class=" CustomeImage rounded img-fluid p-0" />
+                }
+                @if (Model.Picture2 != null)
+                {
+                    <img src="data:image/png;base64,@Convert.ToBase64String(Model.Picture2)" class=" CustomeImage rounded img-fluid p-0" />
+                }
+                @if (Model.Picture3 != null)
+                {
+                    <img src="data:image/png;base64,@Convert.ToBase64String(Model.Picture3)" class=" CustomeImage rounded img-fluid p-0" />
+                }
+            </div>
+            <div class="col-7">
+                <div class="h-25">
+                    <h2>@Model.Title</h2>
+                    <h6>@Model.Price$</h6>
+                    <h6>@Model.Date</h6>
+                </div>
+                <div class="h-50">
+                    Short description:
+                    <p class="border rounded overflow-auto h-25">@Model.ShortDescription</p>
+                    Long description:
+                    <p class="border rounded overflow-auto h-25">@Model.LongDescription</p>
+                </div>
+                <div class="h-25">
+                    @if (Model.State == AspProject_Entities.Enums.ItemState.InCart || (Context.Request.Cookies.ContainsKey("AspProjectGuestCart") && Context.Request.Cookies["AspProjectGuestCart"].Split(',').Contains(Model.Id.ToString())))
+                    {
+                        <a asp-controller="Product" asp-action="RemoveFromCart" asp-route-id="@Model.Id">Remove from cart</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Product" asp-action="addToCart" asp-route-id="@Model.Id">Add to cart</a>
+                    }<br />
+                    <a asp-controller="Master" asp-action="Index">Back to home page</a>
+                    <h6>
+                        @Model.Seler.FirstName @Model.Seler.LastName<br />
+                        Born: @Model.Seler.BirthDate.ToShortDateString()<br />
+                        Email: @Model.Seler.Email
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
